@@ -133,7 +133,6 @@ export const profile_info_add = createAsyncThunk(
                 }
                 return fulfillWithValue(data)
             } catch (error) {
-                // console.log(error.response.data)
                 return rejectWithValue(error.response.data)
             }
         }
@@ -225,6 +224,7 @@ export const authReducer = createSlice({
             state.userInfo = payload.userInfo
             state.successMessage = payload.message
         })
+        
 
     }
 
