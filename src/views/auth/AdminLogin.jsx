@@ -26,7 +26,6 @@ const AdminLogin = () => {
     const submit = (e) => {
         e.preventDefault()
         dispatch(admin_login(state))
-        // console.log(state)
     }
 
     const overrideStyle = {
@@ -39,15 +38,17 @@ const AdminLogin = () => {
 
     useEffect(() => {
         if (errorMessage) {
-            toast.error(errorMessage)
-            dispatch(messageClear())
+            toast.error(errorMessage);
+            dispatch(messageClear());
         }
+    
         if (successMessage) {
-            toast.success(successMessage)
-            dispatch(messageClear())  
-            navigate('/')          
+            toast.success(successMessage);
+            dispatch(messageClear());
+            navigate('/', { replace: true });
         }
-    },[errorMessage,successMessage])
+    }, [errorMessage, successMessage, dispatch, navigate]);
+    
 
     return (
         <div className='min-w-screen min-h-screen bg-[#cdcae9] flex justify-center items-center' >

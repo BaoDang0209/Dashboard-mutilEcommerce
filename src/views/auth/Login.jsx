@@ -36,8 +36,9 @@ const Login = () => {
 
         if (successMessage) {
             toast.success(successMessage)
-            dispatch(messageClear()) 
             navigate('/') 
+            dispatch(messageClear()) 
+            
         }
         if (errorMessage) {
             toast.error(errorMessage)

@@ -121,7 +121,7 @@ export const profile_info_add = createAsyncThunk(
 
     export const logout = createAsyncThunk(
         'auth/logout',
-        async({navigate,role},{rejectWithValue, fulfillWithValue}) => {
+        async({navigate,role},{rejectWithValue, fulfillWithValue, dispatch }) => {
              
             try {
                 const {data} = await api.get('/logout', {withCredentials: true}) 
@@ -131,6 +131,7 @@ export const profile_info_add = createAsyncThunk(
                 } else {
                     navigate('/login')
                 }
+                dispatch(clearUserData());
                 return fulfillWithValue(data)
             } catch (error) {
                 return rejectWithValue(error.response.data)
@@ -143,20 +144,24 @@ export const profile_info_add = createAsyncThunk(
  
 export const authReducer = createSlice({
     name: 'auth',
-    initialState:{
-        successMessage :  '',
-        errorMessage : '',
+    initialState: {
+        successMessage: '',
+        errorMessage: '',
         loader: false,
-        userInfo : '',
+        userInfo: {},
         role: returnRole(localStorage.getItem('accessToken')),
         token: localStorage.getItem('accessToken')
     },
-    reducers : {
-
-        messageClear : (state,_) => {
-            state.errorMessage = ""
+    reducers: {
+        messageClear: (state) => {
+            state.errorMessage = '';
+            state.successMessage = '';
+        },
+        clearUserData: (state) => {
+            state.token = null;
+            state.role = "";
+            state.userInfo = {};
         }
-
     },
     extraReducers: (builder) => {
         builder
@@ -224,10 +229,21 @@ export const authReducer = createSlice({
             state.userInfo = payload.userInfo
             state.successMessage = payload.message
         })
+        .addCase(logout.pending, (state, { payload }) => {
+            state.loader = true;
+        }) 
+        .addCase(logout.rejected, (state, { payload }) => {
+            state.loader = false;
+            state.errorMessage = payload.error
+        }) 
+        .addCase(logout.fulfilled, (state, { payload }) => {
+            state.loader = false;
+            state.successMessage = payload.message          
+        })
         
 
     }
 
 })
-export const {messageClear} = authReducer.actions
+export const {messageClear,clearUserData} = authReducer.actions
 export default authReducer.reducer
