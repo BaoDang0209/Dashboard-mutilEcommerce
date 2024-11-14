@@ -160,7 +160,6 @@ export const authReducer = createSlice({
         clearUserData: (state) => {
             state.token = null;
             state.role = "";
-            state.userInfo = {};
         }
     },
     extraReducers: (builder) => {

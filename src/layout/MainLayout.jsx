@@ -4,7 +4,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import { socket } from '../utils/utils'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCustomer, updateSellers } from '../store/Reducers/chatReducer';
+
 
 const MainLayout = () => {
 
@@ -19,14 +19,6 @@ const MainLayout = () => {
         }
     },[userInfo])
 
-    useEffect(() => {
-        socket.on('activeCustomer',(customers)=>{
-            dispatch(updateCustomer(customers))
-        })
-        socket.on('activeSeller',(sellers)=>{
-            dispatch(updateSellers(sellers))
-        })
-    })
 
     const [showSidebar, setShowSidebar] = useState(false)
 
