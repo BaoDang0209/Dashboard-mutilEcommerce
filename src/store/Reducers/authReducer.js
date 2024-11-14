@@ -25,7 +25,6 @@ export const seller_login = createAsyncThunk(
          console.log(info)
         try {
             const {data} = await api.post('/seller-login',info,{withCredentials: true})
-            console.log(data)
             localStorage.setItem('accessToken',data.token) 
             return fulfillWithValue(data)
         } catch (error) {
