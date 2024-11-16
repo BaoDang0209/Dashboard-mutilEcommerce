@@ -1,4 +1,4 @@
-import { AiOutlineDashboard, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineDashboard } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
 import { FaUserTimes, FaUsers } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
@@ -10,6 +10,7 @@ import { TbBasketDiscount } from "react-icons/tb";
 import { BsCartCheck } from "react-icons/bs"; 
 import { BsFillChatQuoteFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
+import { PiUsersThreeFill } from "react-icons/pi";
 
 export const allNav = [
     {
@@ -21,10 +22,10 @@ export const allNav = [
     },
     {
         id : 2,
-        title : 'Orders',
-        icon : <AiOutlineShoppingCart />,
+        title : 'Customers',
+        icon : <PiUsersThreeFill />,
         role : 'admin',
-        path: '/admin/dashboard/orders'
+        path: '/admin/dashboard/customers'
     },
     {
         id : 3,
