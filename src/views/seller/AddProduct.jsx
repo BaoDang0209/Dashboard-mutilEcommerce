@@ -65,15 +65,35 @@ const AddProduct = () => {
     const imageHandle = (e) => {
         const files = e.target.files;
         const length = files.length;
+        const maxImages = 5;
+    
+        if (length > maxImages) {
+            toast.error("You can only select a maximum of 5 images at once.");
+            return;
+        }
+    
         if (length > 0) {
-            setImages([...images, ...files]);
-            let imageUrl = [];
-            for (let i = 0; i < length; i++) {
-                imageUrl.push({ url: URL.createObjectURL(files[i]) }); 
+            console.log(imageShow.length)
+            const remainingSlots = maxImages - imageShow.length; 
+
+            if (remainingSlots > 0) {
+       
+                const imagesToAdd = Math.min(length, remainingSlots);
+                setImages([...images, ...Array.from(files).slice(0, imagesToAdd)]);
+                
+                let imageUrl = [];
+                for (let i = 0; i < imagesToAdd; i++) {
+                    imageUrl.push({ url: URL.createObjectURL(files[i]) });
+                }
+                setImageShow([...imageShow, ...imageUrl]);
+            } else {
+                toast.error("You can only add a maximum of 5 images.");
             }
-            setImageShow([...imageShow, ...imageUrl]);
         }
     };
+    
+    
+    
 
 
     useEffect(() => {
@@ -123,10 +143,11 @@ const AddProduct = () => {
     const removeImage = (i) => {
         const filterImage = images.filter((img, index) => index !== i);
         const filterImageUrl = imageShow.filter((img, index) => index !== i);
-
+    
         setImages(filterImage);
         setImageShow(filterImageUrl);
     };
+    
 
     const add = (e) => {
         e.preventDefault();
