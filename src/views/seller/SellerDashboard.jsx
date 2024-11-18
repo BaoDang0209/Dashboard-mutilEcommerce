@@ -13,6 +13,7 @@ const SellerDashboard = () => {
 
     const dispatch = useDispatch()
     const {totalSale,totalOrder,totalProduct,totalPendingOrder,recentOrder,recentMessage} = useSelector(state=> state.dashboard)
+    const {totalSale,totalOrder,totalProduct,totalPendingOrder,recentOrder} = useSelector(state=> state.dashboard)
     const {userInfo} = useSelector(state=> state.auth)
 
 

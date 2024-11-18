@@ -59,7 +59,7 @@ const SellerDetails = () => {
                         <h2>Basic Info</h2>
                     </div>
 
-    <div className='flex justify-between text-sm flex-col gap-2 p-4 bg-[#9e97e9] rounded-md'>
+    <div className='flex justify-between text-sm flex-col gap-2 p-4 bg-[#b1addf] rounded-md'>
         <div className='flex gap-2 font-bold text-[#000000]'>
             <span>Name : </span>
             <span>{ seller?.name } </span> 
@@ -93,7 +93,7 @@ const SellerDetails = () => {
                         <h2>Address</h2>
                     </div>
 
-    <div className='flex justify-between text-sm flex-col gap-2 p-4 bg-[#9e97e9] rounded-md'>
+    <div className='flex justify-between text-sm flex-col gap-2 p-4 bg-[#b1addf] rounded-md'>
         <div className='flex gap-2 font-bold text-[#000000]'>
             <span>Shop Name : </span>
             <span>{seller?.shopInfo?.shopName} </span> 
