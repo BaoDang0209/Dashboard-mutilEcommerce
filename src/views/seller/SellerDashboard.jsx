@@ -43,7 +43,7 @@ const SellerDashboard = () => {
             },
             chart : {
                 background : 'transparent',
-                foreColor : '#d0d2d6'
+                foreColor : '#000000'
             },
             dataLabels : {
                 enabled : false
@@ -145,17 +145,17 @@ const SellerDashboard = () => {
         
         <div className='w-full flex flex-wrap mt-7'>
             <div className='w-full lg:w-7/12 lg:pr-3'>
-                <div className='w-full bg-[#6a5fdf] p-4 rounded-md'>
+                <div className='w-full bg-[#e6e7fb] p-4 rounded-md'>
             <Chart options={state.options} series={state.series} type='bar' height={350} />
                 </div>
             </div>
 
         
         <div className='w-full lg:w-5/12 lg:pl-4 mt-6 lg:mt-0'>
-            <div className='w-full bg-[#6a5fdf] p-4 rounded-md text-[#d0d2d6]'>
+            <div className='w-full bg-[#e6e7fb] p-4 rounded-md text-[#000000]'>
                 <div className='flex justify-between items-center'>
-                    <h2 className='font-semibold text-lg text-[#d0d2d6] pb-3'>Recent Customer Message</h2>
-                    <Link className='font-semibold text-sm text-[#d0d2d6]'>View All</Link>
+                    <h2 className='font-semibold text-lg text-[#000000] pb-3'>Recent Customer Message</h2>
+                    <Link className='font-semibold text-sm text-[#000000]'>View All</Link>
                 </div>
 
         <div className='flex flex-col gap-2 pt-6 text-[#d0d2d6]'>
@@ -192,15 +192,15 @@ const SellerDashboard = () => {
         </div>
 
 
-        <div className='w-full p-4 bg-[#6a5fdf] rounded-md mt-6'>
+        <div className='w-full p-4 bg-[#e6e7fb] rounded-md mt-6'>
             <div className='flex justify-between items-center'>
-                <h2 className='font-semibold text-lg text-[#d0d2d6] pb-3 '>Recent Orders</h2>
-                <Link className='font-semibold text-sm text-[#d0d2d6]'>View All</Link>
+                <h2 className='font-semibold text-lg text-[#000000] pb-3 '>Recent Orders</h2>
+                <Link className='font-semibold text-sm text-[#000000]'>View All</Link>
                </div>
 
     <div className='relative overflow-x-auto'>
-    <table className='w-full text-sm text-left text-[#d0d2d6]'>
-        <thead className='text-sm text-[#d0d2d6] uppercase border-b border-slate-700'>
+    <table className='w-full text-sm text-left text-[#000000]'>
+        <thead className='text-sm text-[#000000] uppercase border-b border-slate-700'>
         <tr>
             <th scope='col' className='py-3 px-4'>Order Id</th>
             <th scope='col' className='py-3 px-4'>Price</th>
