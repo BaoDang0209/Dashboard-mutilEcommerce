@@ -12,7 +12,6 @@ import customer from '../../assets/demo.jpg'
 const SellerDashboard = () => {
 
     const dispatch = useDispatch()
-    const {totalSale,totalOrder,totalProduct,totalPendingOrder,recentOrder,recentMessage} = useSelector(state=> state.dashboard)
     const {totalSale,totalOrder,totalProduct,totalPendingOrder,recentOrder} = useSelector(state=> state.dashboard)
     const {userInfo} = useSelector(state=> state.auth)
 
@@ -158,35 +157,6 @@ const SellerDashboard = () => {
                     <h2 className='font-semibold text-lg text-[#000000] pb-3'>Recent Customer Message</h2>
                     <Link className='font-semibold text-sm text-[#000000]'>View All</Link>
                 </div>
-
-        <div className='flex flex-col gap-2 pt-6 text-[#d0d2d6]'>
-            <ol className='relative border-1 border-slate-600 ml-4'>
-               
-    {
-        recentMessage.map((m, i) => <li className='mb-3 ml-6'>
-        <div className='flex absolute -left-5 shadow-lg justify-center items-center w-10 h-10 p-[6px] bg-[#4c7fe2] rounded-full z-10'>
-        {
-            m.senderId === userInfo._id ? <img className='w-full rounded-full h-full shadow-lg' src={userInfo.image} alt="" /> : <img className='w-full rounded-full h-full shadow-lg' src={customer} alt="" />
-        } 
-        </div>
-        <div className='p-3 bg-slate-800 rounded-lg border border-slate-600 shadow-sm'>
-        <div className='flex justify-between items-center mb-2'>
-    <Link className='text-md font-normal'>{m.senderName}</Link>
-    <time className='mb-1 text-sm font-normal sm:order-last sm:mb-0'> {moment(m.createdAt).startOf('hour').fromNow()}</time>
-        </div>
-        <div className='p-2 text-xs font-normal bg-slate-700 rounded-lg border border-slate-800'>
-            {m.message}
-        </div>
-        </div>
-    </li>)
-        }
-
- 
-
-            </ol>
-
-        </div>
-
 
             </div>
         </div>
