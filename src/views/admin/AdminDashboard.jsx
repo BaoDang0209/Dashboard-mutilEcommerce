@@ -41,7 +41,7 @@ const AdminDashboard = () => {
             },
             chart : {
                 background : 'transparent',
-                foreColor : '#d0d2d6'
+                foreColor : '#000000'
             },
             dataLabels : {
                 enabled : false
@@ -143,17 +143,17 @@ const AdminDashboard = () => {
         
         <div className='w-full flex flex-wrap mt-7'>
             <div className='w-full lg:w-7/12 lg:pr-3'>
-                <div className='w-full bg-[#6a5fdf] p-4 rounded-md'>
+                <div className='w-full bg-[#b1addf] p-4 rounded-md'>
             <Chart options={state.options} series={state.series} type='bar' height={350} />
                 </div>
             </div>
 
         
         <div className='w-full lg:w-5/12 lg:pl-4 mt-6 lg:mt-0'>
-            <div className='w-full bg-[#6a5fdf] p-4 rounded-md text-[#d0d2d6]'>
+            <div className='w-full bg-[#b1addf] p-4 rounded-md text-[#000000]'>
                 <div className='flex justify-between items-center'>
-                    <h2 className='font-semibold text-lg text-[#d0d2d6] pb-3'>Recent Seller Message</h2>
-                    <Link className='font-semibold text-sm text-[#d0d2d6]'>View All</Link>
+                    <h2 className='font-semibold text-lg text-[#000000] pb-3'>Recent Seller Message</h2>
+                    <Link className='font-semibold text-sm text-[#000000]'>View All</Link>
                 </div>
 
 
