@@ -124,6 +124,7 @@ export const get_seller = createAsyncThunk(
 )
 
   // End Method 
+  
 
  
 export const sellerReducer = createSlice({

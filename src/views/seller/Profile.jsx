@@ -3,7 +3,7 @@ import { FaImages } from "react-icons/fa6";
 import { FadeLoader } from 'react-spinners';
 import { FaRegEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
-import { profile_image_upload,messageClear,profile_info_add } from '../../store/Reducers/authReducer'
+import { profile_image_upload,messageClear,profile_info_add,update_password } from '../../store/Reducers/authReducer'
 import toast from 'react-hot-toast';
 import { PropagateLoader } from 'react-spinners';
 import { overrideStyle } from '../../utils/utils'; 
@@ -17,6 +17,42 @@ const Profile = () => {
         shopName: '',
         sub_district: '' 
     })
+
+    const [passwordState, setPasswordState] = useState({
+        oldPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+    });
+
+    const handlePasswordChange = (e) => {
+        setPasswordState({
+            ...passwordState,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const validatePassword = () => {
+        if (passwordState.newPassword !== passwordState.confirmPassword) {
+            toast.error("New Password and Confirm Password do not match!");
+            return false;
+        }
+        return true;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (validatePassword()) {
+
+            const data = {
+                oldPassword: passwordState.oldPassword,
+                newPassword: passwordState.newPassword,
+                confirmPassword: passwordState.confirmPassword
+            };
+            dispatch(update_password(data)); 
+        }
+    };
+    
+    
 
     const dispatch = useDispatch()
     const { userInfo,loader,successMessage } = useSelector(state => state.auth)
@@ -45,6 +81,7 @@ const Profile = () => {
             [e.target.name]: e.target.value
         })
     }
+
 
     const add = (e) => {
         e.preventDefault()
@@ -186,26 +223,53 @@ const Profile = () => {
         <div className='w-full pl-0 md:pl-7 mt-6 md:mt-0'>
         <div className='bg-[#b1addf] rounded-md text-[#000000] p-4'>
         <h1 className='text-[#000000] text-lg mb-3 font-semibold'>Change Password</h1>
-        <form>
-                    <div className='flex flex-col w-full gap-1 mb-2'>
-                <label htmlFor="email">Email</label>
-                <input className='px-4 py-2 focus:border-indigo-200 outline-none bg-[#b1addf] border border-slate-700 rounded-md text-[#000000]' type="email" name='email' id='email' placeholder='email' />
-            </div>  
-
+        <form onSubmit={handleSubmit}>
             <div className='flex flex-col w-full gap-1 mb-2'>
                 <label htmlFor="o_password">Old Password</label>
-                <input className='px-4 py-2 focus:border-indigo-200 outline-none bg-[#b1addf] border border-slate-700 rounded-md text-[#000000]' type="password" name='old_password' id='o_password' placeholder='Old Password' />
+                <input 
+                    className='px-4 py-2 focus:border-indigo-200 outline-none bg-[#b1addf] border border-slate-700 rounded-md text-[#000000]' 
+                    type="password" 
+                    name='oldPassword' 
+                    id='o_password' 
+                    placeholder='Old Password' 
+                    value={passwordState.oldPassword}
+                    onChange={handlePasswordChange}
+                />
             </div>  
- 
+
             <div className='flex flex-col w-full gap-1 mb-2'>
                 <label htmlFor="n_password">New Password</label>
-                <input className='px-4 py-2 focus:border-indigo-200 outline-none bg-[#b1addf] border border-slate-700 rounded-md text-[#000000]' type="password" name='new_password' id='n_password' placeholder='New Password' />
-            </div>   
- 
+                <input 
+                    className='px-4 py-2 focus:border-indigo-200 outline-none bg-[#b1addf] border border-slate-700 rounded-md text-[#000000]' 
+                    type="password" 
+                    name='newPassword' 
+                    id='n_password' 
+                    placeholder='New Password' 
+                    value={passwordState.newPassword}
+                    onChange={handlePasswordChange}
+                />
+            </div>  
 
-            <button className='bg-red-500  hover:shadow-red-500/40 hover:shadow-md text-white rounded-md px-7 py-2 my-2'>Save Changes</button>
+            <div className='flex flex-col w-full gap-1 mb-2'>
+                <label htmlFor="c_password">Confirm New Password</label>
+                <input 
+                    className='px-4 py-2 focus:border-indigo-200 outline-none bg-[#b1addf] border border-slate-700 rounded-md text-[#000000]' 
+                    type="password" 
+                    name='confirmPassword' 
+                    id='c_password' 
+                    placeholder='Confirm New Password' 
+                    value={passwordState.confirmPassword}
+                    onChange={handlePasswordChange}
+                />
+            </div>  
 
-                </form>
+            <button 
+                disabled={loader ? true : false} 
+                className='bg-red-500 hover:shadow-red-500/40 hover:shadow-md text-white rounded-md px-7 py-2 my-2'
+            >
+                {loader ? <PropagateLoader color='#fff' cssOverride={overrideStyle} /> : 'Save Changes'}
+            </button>
+        </form>
 
         </div>
         

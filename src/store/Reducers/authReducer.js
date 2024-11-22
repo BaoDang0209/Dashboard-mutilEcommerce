@@ -138,7 +138,29 @@ export const profile_info_add = createAsyncThunk(
         }
     )
 
-        // end Method 
+        // end Method
+        export const update_password = createAsyncThunk(
+            'seller/update_password',
+            async (passwordInfo, { rejectWithValue, fulfillWithValue }) => {
+                try {
+                    const { data } = await api.post('/update-password', passwordInfo, { withCredentials: true });
+                    console.log('Data from API:', data); // In dữ liệu trả về từ API
+                    return fulfillWithValue(data); 
+                } catch (error) {
+                    console.error('API error:', error);  // In lỗi chi tiết
+                    if (error.response) {
+                        console.error('Error Response:', error.response);  // In chi tiết lỗi từ server
+                        return rejectWithValue(error.response.data);  // Trả về lỗi chi tiết
+                    } else {
+                        console.error('Error Message:', error.message);  // In lỗi không có response
+                        return rejectWithValue(error.message);  // Trả về lỗi chung
+                    }
+                }
+            }
+        );
+        
+        
+        
 
  
 export const authReducer = createSlice({
@@ -238,6 +260,18 @@ export const authReducer = createSlice({
             state.loader = false;
             state.successMessage = payload.message          
         })
+        .addCase(update_password.pending, (state) => {
+            state.loader = true;
+        })
+        .addCase(update_password.fulfilled, (state, { payload }) => {
+            state.loader = false;
+            state.successMessage = payload.message; 
+        })
+        .addCase(update_password.rejected, (state, { payload }) => {
+            state.loader = false; 
+            state.errorMessage = payload.error; 
+        });
+
         
 
     }
