@@ -52,9 +52,8 @@ const Customers = () => {
                                 <th scope='col' className='py-3 px-4'>Image</th>
                                 <th scope='col' className='py-3 px-4'>Name</th>
                                 <th scope='col' className='py-3 px-4'>Email</th>
-                                <th scope='col' className='py-3 px-4'>Phone</th>
+                                <th scope='col' className='py-3 px-4'>Phone Number</th>
                                 <th scope='col' className='py-3 px-4'>Address</th>
-                                <th scope='col' className='py-3 px-4'>Status</th>
                                 <th scope='col' className='py-3 px-4'>Action</th>
                             </tr>
                         </thead>
@@ -69,9 +68,8 @@ const Customers = () => {
                                         </td>
                                         <td className='py-1 px-4 font-medium whitespace-nowrap'>{customer.name}</td>
                                         <td className='py-1 px-4 font-medium whitespace-nowrap'>{customer.email}</td>
-                                        <td className='py-1 px-4 font-medium whitespace-nowrap'>{customer.phone}</td>
+                                        <td className='py-1 px-4 font-medium whitespace-nowrap'>{customer.phoneNumber}</td>
                                         <td className='py-1 px-4 font-medium whitespace-nowrap'>{customer.address}</td>
-                                        <td className='py-1 px-4 font-medium whitespace-nowrap'>{customer.status}</td>
                                         <td className='py-1 px-4 font-medium whitespace-nowrap'>
                                             <div className='flex justify-start items-center gap-4'>
                                                 <Link to={`/admin/dashboard/customer/details/${customer._id}`} className='p-[6px] bg-green-500 rounded hover:shadow-lg hover:shadow-green-500/50'>
