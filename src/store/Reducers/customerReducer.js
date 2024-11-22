@@ -34,11 +34,11 @@ export const get_customers = createAsyncThunk(
 );
 export const get_customer = createAsyncThunk(
     'customer/get_customer',
-    async(cusId ,{rejectWithValue, fulfillWithValue}) => {
+    async(customerId ,{rejectWithValue, fulfillWithValue}) => {
         
         try {
              
-            const {data} = await api.get(`/customer/get-customer/${cusId}`,{withCredentials: true}) 
+            const {data} = await api.get(`/get-customer/${customerId}`,{withCredentials: true}) 
              console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
