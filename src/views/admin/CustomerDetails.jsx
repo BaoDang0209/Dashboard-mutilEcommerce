@@ -18,7 +18,7 @@ const CustomerDetails = () => {
     const [status, setStatus] =  useState('')
     const submit = (e) => {
         e.preventDefault()
-       
+        console.log("Submitted status:", status);
     }
 
 
@@ -127,13 +127,6 @@ const CustomerDetails = () => {
                 </div>
             </form>
         </div>
-
-
-
-
-
-
-
         </div> 
         </div>
     );
